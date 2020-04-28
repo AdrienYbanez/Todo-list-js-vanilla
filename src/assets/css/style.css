@@ -1,3 +1,5 @@
+--
+
 * {
     box-sizing: border-box;
 }
@@ -6,21 +8,29 @@ p {
     margin: 0;
 }
 
+h1 {
+    font-size: 1.4rem;
+}
+
 body {
     min-height: 100vh;
     display: flex;
     margin: 0;
     align-items: center;
     justify-content: center;
+    background: #fff;
 }
 
 .container {
     width: 500px;
+    min-height: 400px;
     border: 1px solid #eee;
     border-radius: 3px;
     padding: 20px;
     display: flex;
     flex-direction: column;
+    background: #eee;
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
 }
 
 form {
@@ -42,14 +52,43 @@ button {
     padding: 5px 15px;
     border: 0;
     border-radius: 5px;
-    margin: 0 3px;
+    margin: 0 4px;
     outline: 0;
+    color: white;
+    min-width: 100px;
 }
+
+.bg-success {
+    background: #55efc4;
+}
+
+.bg-success:active {
+    background: lightgreen;
+}
+
+.bg-danger {
+    background: #d63031;
+}
+
+.bg-danger:active {
+    background: lightcoral;
+}
+
+.bg-primary {
+    background: #74b9ff;
+}
+
+.bg-primary:active {
+    background: lightskyblue;
+}
+
 
 form input {
     flex: 1;
     margin-right: 15px;
+    width: 100%;
 }
+
 
 ul {
     padding: 0;
@@ -59,6 +98,17 @@ ul {
 li {
     display: flex;
     align-items: center;
+    padding: 10px 0;
+    cursor: pointer;
+    background: #fff;
+    padding: 0.8rem 1rem;
+    border-radius: 3px;
+    margin-top: 1rem;
+
+}
+
+li:hover {
+    background:#ddd;
 }
 
 li p {
@@ -75,4 +125,17 @@ li .todo {
 
 li .todo.done {
     background: #333;
+}
+
+li input {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.text-barre {
+    text-decoration: line-through;
+}
+
+.color-red {
+    color: red;
 }
