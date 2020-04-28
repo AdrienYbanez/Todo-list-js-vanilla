@@ -5,6 +5,7 @@ const form = document.querySelector('form');
 const inputAjout = document.querySelector('form > input');
 const buttonAjout = document.querySelector('form > button');
 let simpleClick = false;
+let currentEdit = false;
 const todosList = [
     {
         text: 'Je suis une tache',
@@ -57,6 +58,7 @@ const createTodoElem = (todo, index) => {
     buttonEdit.innerHTML = 'Editer'
     buttonEdit.classList.add('bg-primary');
     buttonEdit.addEventListener('click', event => {
+        console.log('mon event : ', event);
         event.stopPropagation();
         toggleEditMode(index);
     });
@@ -73,9 +75,14 @@ const createTodoElem = (todo, index) => {
                 simpleClick = false;
                 setDone(index, li);
             } else {
+                console.log(currentEdit);
+                if (!currentEdit) {
+                    currentEdit = true;
+                    buttonEdit.dispatchEvent(new Event('click'));
+                }
                 simpleClick = false;
             }
-        }, 700);
+        }, 400);
         
     });
     return li;
@@ -138,6 +145,7 @@ const createTodoEditElement = (todo, index) => {
     buttonCancel.addEventListener('click', () => {
         event.stopPropagation();
         toggleEditMode(index);
+        currentEdit = false;
     });
 
     const buttonSave = document.createElement('button');
@@ -147,6 +155,7 @@ const createTodoEditElement = (todo, index) => {
         event.stopPropagation();
         editTodo(index, input);
         inputAjout.focus();
+        currentEdit = false;
     })
 
     li.append(input, buttonSave, buttonCancel);
@@ -194,16 +203,8 @@ const newTodo = (value) => {
     Ecoute l'event submit et crée une nouvelle tache
 */
 buttonAjout.addEventListener('click', (event) => {
-    simpleClick = !simpleClick;
-    setTimeout(() =>{
-        if (simpleClick) {
-            simpleClick = false;
-            newTodo(inputAjout.value);
-            inputAjout.focus();
-        } else {
-            simpleClick = false;
-        }
-    }, 700);
+    newTodo(inputAjout.value);
+    inputAjout.focus();
 });
 
 
